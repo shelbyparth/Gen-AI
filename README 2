@@ -1,0 +1,131 @@
+Practical No. 02: Text Classification using Embedding Layer and LSTM
+Objective
+Build a binary text classification model using an Embedding layer and LSTM network to classify SMS messages as Ham (normal) or Spam.
+
+Dataset
+SMS Spam Collection Dataset
+
+The dataset contains SMS messages labeled as:
+
+Ham – Normal/legitimate message
+
+Spam – Unwanted or fraudulent/promotional message
+
+Technologies Used
+Python
+
+Pandas
+
+NumPy
+
+TensorFlow / Keras
+
+Scikit-learn
+
+Matplotlib
+
+Methodology
+Load the SMS Spam Collection dataset.
+
+Convert labels into binary values:
+
+Ham = 0
+
+Spam = 1
+
+Clean and preprocess the SMS text.
+
+Split the dataset into training and testing sets.
+
+Tokenize the text using Keras Tokenizer.
+
+Convert text into numerical sequences.
+
+Apply padding to make all sequences the same length.
+
+Build an LSTM model with:
+
+Embedding Layer
+
+LSTM Layer
+
+Dropout Layer
+
+Dense Layer with Sigmoid activation
+
+Train the model for 10 epochs.
+
+Evaluate the model using:
+
+Accuracy
+
+Precision
+
+Recall
+
+F1-Score
+
+Classification Report
+
+Confusion Matrix
+
+Test the model using new SMS messages.
+
+Model Architecture
+
+Input Text
+    ↓
+Tokenization
+    ↓
+Padding
+    ↓
+Embedding Layer
+    ↓
+LSTM Layer
+    ↓
+Dropout
+    ↓
+Dense Layer (Sigmoid)
+    ↓
+Ham / Spam
+Training
+The model is trained using:
+
+Optimizer: Adam
+
+Loss Function: Binary Cross-Entropy
+
+Epochs: 10
+
+Batch Size: 32
+
+Validation Split: 20%
+
+Expected Output
+For example:
+
+
+Message: Congratulations! You have won a free prize. Call now!
+Predicted Class: Spam
+Spam Probability: 0.xxxx
+A normal message such as:
+
+
+Can you send me the notes for today's class?
+should be classified as:
+
+
+Predicted Class: Ham
+Evaluation
+The performance of the model is evaluated using accuracy, precision, recall, F1-score, classification report, and confusion matrix.
+
+The training and validation accuracy/loss graphs are also generated to observe the model's learning performance.
+
+Conclusion
+The practical demonstrates how an Embedding layer and LSTM network can be used for binary text classification. The trained model learns patterns in SMS messages and predicts whether a new message belongs to the Ham or Spam class.
+
+
+
+
+
+
