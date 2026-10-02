@@ -1,0 +1,103 @@
+Practical No. 03 — Autoencoder and Variational Autoencoder
+Student Details
+- Name: Parth Kitchloo
+- PRN: 202401110014
+- Batch: A2
+- Branch: AIML
+Aim
+To build an Autoencoder (AE) and a Variational Autoencoder (VAE) for image reconstruction and generation using the MNIST handwritten digit dataset, and compare their performance based on reconstruction quality, loss values, latent-space representation, and generated images.
+Dataset
+The practical uses the MNIST Handwritten Digit Dataset.
+- Training images: 60,000
+- Test images: 10,000
+- Image size: 28 × 28 pixels
+- Image type: Grayscale
+- Pixel values: Normalized from 0–255 to 0–1
+Dataset Documentation
+https://keras.io/api/datasets/mnist/
+The dataset is downloaded automatically through Keras when the notebook is executed. No manual dataset upload is required.
+Requirements
+The notebook is designed for Google Colab.
+Main Libraries
+- Python
+- NumPy
+- Matplotlib
+- TensorFlow / Keras
+- Scikit-learn
+These libraries are imported in the notebook. Google Colab normally provides the required packages.
+Models Implemented
+1. Autoencoder
+The Autoencoder contains:
+Input → Encoder → Latent Space → Decoder → Reconstructed Image
+The encoder compresses the 28 × 28 image into a 16-dimensional latent vector. The decoder uses this representation to reconstruct the original image.
+The Autoencoder is trained using Mean Squared Error (MSE) reconstruction loss.
+2. Variational Autoencoder
+The VAE contains:
+Input → Encoder → Mean & Log Variance → Reparameterization → Latent Space → Decoder
+The encoder learns:
+- Mean (μ)
+- Log variance (log σ²)
+The latent vector is obtained using the reparameterization trick:
+z = μ + σ × ε
+where ε is sampled from a standard normal distribution.
+The VAE loss consists of:
+Total Loss = Reconstruction Loss + KL Divergence
+The KL-divergence term regularizes the latent space toward a standard normal distribution.
+Training Configuration
+Both models are trained for 20 epochs.
+- Batch size: 128
+- Optimizer: Adam
+- Learning rate: 0.001
+- Latent dimension: 16
+Twenty epochs are used to give both models sufficient time to learn useful representations while keeping the notebook practical to execute in Google Colab.
+Outputs Produced
+The notebook generates:
+1. Sample MNIST images
+2. Autoencoder training and validation loss graph
+3. Original vs Autoencoder reconstructed images
+4. Autoencoder reconstruction MSE
+5. VAE total, reconstruction, and KL-divergence loss graph
+6. Original vs VAE reconstructed images
+7. VAE reconstruction MSE
+8. New images generated from random VAE latent vectors
+9. 2D PCA visualization of the VAE latent space
+10. AE vs VAE reconstruction MSE comparison graph
+11. Final model comparison and analysis
+Expected Observations
+Autoencoder
+The Autoencoder learns a deterministic compressed representation of each image. It generally produces clear reconstructions because it directly minimizes reconstruction error.
+VAE
+The VAE learns a probabilistic latent representation. Its KL-divergence term encourages a smooth and structured latent space. Consequently, VAE reconstructions may be smoother than AE reconstructions, but the learned latent space supports generation of new images.
+Image Generation
+Random vectors sampled from the VAE's regularized latent distribution are passed through the decoder to generate new digit-like images.
+AE vs VAE Comparison
+Feature	Autoencoder	Variational Autoencoder
+Latent representation	Deterministic vector	Probabilistic distribution
+Encoder output	Latent vector	Mean and log variance
+Reconstruction	Usually sharper	Often smoother
+Reconstruction loss	MSE	Reconstruction component
+KL divergence	Not used	Used
+Structured latent space	Not explicitly enforced	Explicitly encouraged
+Random generation	Not guaranteed	Supported
+Main purpose	Reconstruction/compression	Reconstruction and generation
+
+
+How to Run
+Option 1 — Google Colab
+1. Open the .ipynb notebook in Google Colab.
+2. Select Runtime → Restart session if an old runtime is active.
+3. Select Runtime → Run all.
+4. Wait for both models to complete 20 epochs.
+5. Check that all graphs and image outputs are visible.
+6. Save/download the completed notebook for submission.
+Important
+The MNIST dataset is automatically downloaded by:
+keras.datasets.mnist.load_data()
+Therefore, the dataset does not need to be downloaded manually.
+Project Structure
+Practical_03_Autoencoder_VAE_Parth_Kitchloo.ipynb
+README.md
+Conclusion
+The practical demonstrates the implementation of both Autoencoder and Variational Autoencoder models for image reconstruction using MNIST.
+The Autoencoder learns an efficient deterministic representation for reconstruction, while the VAE learns a probabilistic and more structured latent space that enables new image generation.
+The comparison demonstrates the difference between reconstruction-focused representation learning and probabilistic generative representation learning.
